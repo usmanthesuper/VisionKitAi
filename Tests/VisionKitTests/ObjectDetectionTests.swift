@@ -17,7 +17,7 @@ import UIKit
 #endif
 
 final class ObjectDetectionTests: XCTestCase {
-    var model: VKModel?
+    var model: VKSDKModel?
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -77,10 +77,10 @@ final class ObjectDetectionTests: XCTestCase {
         if let predictions = predictions {
             XCTAssertGreaterThan(predictions.count, 0, "Should have at least one prediction")
             
-            // Cast to VKObjectDetectionPrediction to test specific properties
+            // Cast to VKSDKObjectDetectionPrediction to test specific properties
             for prediction in predictions {
-                guard let objPrediction = prediction as? VKObjectDetectionPrediction else {
-                    XCTFail("Prediction should be of type VKObjectDetectionPrediction")
+                guard let objPrediction = prediction as? VKSDKObjectDetectionPrediction else {
+                    XCTFail("Prediction should be of type VKSDKObjectDetectionPrediction")
                     continue
                 }
                 
@@ -126,10 +126,10 @@ final class ObjectDetectionTests: XCTestCase {
         if let predictions = predictions {
             XCTAssertGreaterThan(predictions.count, 0, "Should have at least one prediction")
             
-            // Test VKObjectDetectionPrediction properties by casting
+            // Test VKSDKObjectDetectionPrediction properties by casting
             for prediction in predictions {
-                guard let objPrediction = prediction as? VKObjectDetectionPrediction else {
-                    XCTFail("Prediction should be of type VKObjectDetectionPrediction")
+                guard let objPrediction = prediction as? VKSDKObjectDetectionPrediction else {
+                    XCTFail("Prediction should be of type VKSDKObjectDetectionPrediction")
                     continue
                 }
                 
@@ -140,7 +140,7 @@ final class ObjectDetectionTests: XCTestCase {
             
             // Verify meaningful results
             if let firstPrediction = predictions.first,
-                let objPrediction = firstPrediction as? VKObjectDetectionPrediction {
+                let objPrediction = firstPrediction as? VKSDKObjectDetectionPrediction {
                 XCTAssertGreaterThan(objPrediction.confidence, 0.1, "Top prediction should have reasonable confidence")
             }
         }
@@ -184,10 +184,10 @@ final class ObjectDetectionTests: XCTestCase {
         if let predictions = predictions {
             // RFDetr might detect different objects than YOLO, so we'll be less strict about count
             
-            // Cast to VKObjectDetectionPrediction to test specific properties
+            // Cast to VKSDKObjectDetectionPrediction to test specific properties
             for prediction in predictions {
-                guard let objPrediction = prediction as? VKObjectDetectionPrediction else {
-                    XCTFail("Prediction should be of type VKObjectDetectionPrediction")
+                guard let objPrediction = prediction as? VKSDKObjectDetectionPrediction else {
+                    XCTFail("Prediction should be of type VKSDKObjectDetectionPrediction")
                     continue
                 }
                 
@@ -227,10 +227,10 @@ final class ObjectDetectionTests: XCTestCase {
         if let predictions = predictions {
             print("RFDetr UIImage detected \(predictions.count) objects")
             
-            // Test VKObjectDetectionPrediction properties by casting
+            // Test VKSDKObjectDetectionPrediction properties by casting
             for prediction in predictions {
-                guard let objPrediction = prediction as? VKObjectDetectionPrediction else {
-                    XCTFail("Prediction should be of type VKObjectDetectionPrediction")
+                guard let objPrediction = prediction as? VKSDKObjectDetectionPrediction else {
+                    XCTFail("Prediction should be of type VKSDKObjectDetectionPrediction")
                     continue
                 }
                 

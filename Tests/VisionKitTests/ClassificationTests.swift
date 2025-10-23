@@ -67,10 +67,10 @@ final class ClassificationTests: XCTestCase {
         if let basePredictions = basePredictions {
             XCTAssertGreaterThan(basePredictions.count, 0, "Should have at least one prediction")
             
-            // Cast to VKClassificationPrediction to test specific properties
+            // Cast to VKSDKClassificationPrediction to test specific properties
             for basePrediction in basePredictions {
-                guard let prediction = basePrediction as? VKClassificationPrediction else {
-                    XCTFail("Prediction should be of type VKClassificationPrediction")
+                guard let prediction = basePrediction as? VKSDKClassificationPrediction else {
+                    XCTFail("Prediction should be of type VKSDKClassificationPrediction")
                     continue
                 }
                 
@@ -89,7 +89,7 @@ final class ClassificationTests: XCTestCase {
             // Verify we got meaningful results
             XCTAssertGreaterThan(basePredictions.count, 0, "Should have predictions")
             if let topBasePrediction = basePredictions.first,
-               let topPrediction = topBasePrediction as? VKClassificationPrediction {
+               let topPrediction = topBasePrediction as? VKSDKClassificationPrediction {
                 XCTAssertGreaterThan(topPrediction.confidence, 0.1, "Top prediction should have reasonable confidence")
             }
         }
@@ -110,7 +110,7 @@ final class ClassificationTests: XCTestCase {
             return
         }
         
-        // Test detect method that returns RFPrediction objects (but are actually VKClassificationPrediction)
+        // Test detect method that returns RFPrediction objects (but are actually VKSDKClassificationPrediction)
         let (basePredictions, inferenceError) = await model.detect(pixelBuffer: buffer)
         
         XCTAssertNil(inferenceError, "Detection inference failed: \(inferenceError?.localizedDescription ?? "unknown error")")
@@ -119,10 +119,10 @@ final class ClassificationTests: XCTestCase {
         if let basePredictions = basePredictions {
             XCTAssertGreaterThan(basePredictions.count, 0, "Should have at least one prediction")
             
-            // Verify these can be cast to VKClassificationPrediction objects
+            // Verify these can be cast to VKSDKClassificationPrediction objects
             for basePrediction in basePredictions {
-                guard let prediction = basePrediction as? VKClassificationPrediction else {
-                    XCTFail("Prediction should be of type VKClassificationPrediction")
+                guard let prediction = basePrediction as? VKSDKClassificationPrediction else {
+                    XCTFail("Prediction should be of type VKSDKClassificationPrediction")
                     continue
                 }
                 
@@ -133,7 +133,7 @@ final class ClassificationTests: XCTestCase {
             
             // Verify meaningful results  
             if let topBasePrediction = basePredictions.first,
-               let topPrediction = topBasePrediction as? VKClassificationPrediction {
+               let topPrediction = topBasePrediction as? VKSDKClassificationPrediction {
                 XCTAssertGreaterThan(topPrediction.confidence, 0.1, "Top prediction should have reasonable confidence")
             }
         }
@@ -163,20 +163,20 @@ final class ClassificationTests: XCTestCase {
         if let predictions = predictions {
             XCTAssertGreaterThan(predictions.count, 0, "Should have at least one prediction")
             
-            // Verify these can be cast to VKClassificationPrediction
+            // Verify these can be cast to VKSDKClassificationPrediction
             for prediction in predictions {
-                if let classificationPrediction = prediction as? VKClassificationPrediction {
+                if let classificationPrediction = prediction as? VKSDKClassificationPrediction {
                     XCTAssertFalse(classificationPrediction.className.isEmpty, "Class name should not be empty")
                     XCTAssertGreaterThanOrEqual(classificationPrediction.confidence, 0.0, "Confidence should be >= 0")
                     XCTAssertLessThanOrEqual(classificationPrediction.confidence, 1.0, "Confidence should be <= 1")
                 } else {
-                    XCTFail("Prediction should be castable to VKClassificationPrediction")
+                    XCTFail("Prediction should be castable to VKSDKClassificationPrediction")
                 }
             }
             
             // Verify meaningful results
             if let firstPrediction = predictions.first,
-               let classificationPrediction = firstPrediction as? VKClassificationPrediction {
+               let classificationPrediction = firstPrediction as? VKSDKClassificationPrediction {
                 XCTAssertGreaterThan(classificationPrediction.confidence, 0.1, "Top prediction should have reasonable confidence")
             }
         }
@@ -207,10 +207,10 @@ final class ClassificationTests: XCTestCase {
         if let basePredictions = basePredictions {
             XCTAssertGreaterThan(basePredictions.count, 0, "Should have at least one prediction")
             
-            // Test VKClassificationPrediction properties by casting
+            // Test VKSDKClassificationPrediction properties by casting
             for basePrediction in basePredictions {
-                guard let prediction = basePrediction as? VKClassificationPrediction else {
-                    XCTFail("Prediction should be of type VKClassificationPrediction")
+                guard let prediction = basePrediction as? VKSDKClassificationPrediction else {
+                    XCTFail("Prediction should be of type VKSDKClassificationPrediction")
                     continue
                 }
                 
@@ -222,7 +222,7 @@ final class ClassificationTests: XCTestCase {
             
             // Verify meaningful results
             if let topBasePrediction = basePredictions.first,
-               let topPrediction = topBasePrediction as? VKClassificationPrediction {
+               let topPrediction = topBasePrediction as? VKSDKClassificationPrediction {
                 XCTAssertGreaterThan(topPrediction.confidence, 0.1, "Top prediction should have reasonable confidence")
             }
         }
@@ -267,10 +267,10 @@ final class ClassificationTests: XCTestCase {
         if let basePredictions = basePredictions {
             XCTAssertGreaterThan(basePredictions.count, 0, "Should have at least one prediction")
             
-            // Cast to VKClassificationPrediction to test specific properties
+            // Cast to VKSDKClassificationPrediction to test specific properties
             for basePrediction in basePredictions {
-                guard let prediction = basePrediction as? VKClassificationPrediction else {
-                    XCTFail("Prediction should be of type VKClassificationPrediction")
+                guard let prediction = basePrediction as? VKSDKClassificationPrediction else {
+                    XCTFail("Prediction should be of type VKSDKClassificationPrediction")
                     continue
                 }
                 
@@ -289,7 +289,7 @@ final class ClassificationTests: XCTestCase {
             // Verify we got meaningful results
             XCTAssertGreaterThan(basePredictions.count, 0, "Should have predictions")
             if let topBasePrediction = basePredictions.first,
-               let topPrediction = topBasePrediction as? VKClassificationPrediction {
+               let topPrediction = topBasePrediction as? VKSDKClassificationPrediction {
                 XCTAssertGreaterThan(topPrediction.confidence, 0.1, "Top prediction should have reasonable confidence")
             }
         }
@@ -310,7 +310,7 @@ final class ClassificationTests: XCTestCase {
             return
         }
         
-        // Test detect method that returns RFPrediction objects (but are actually VKClassificationPrediction)
+        // Test detect method that returns RFPrediction objects (but are actually VKSDKClassificationPrediction)
         let (basePredictions, inferenceError) = await model.detect(pixelBuffer: buffer)
         
         XCTAssertNil(inferenceError, "Detection inference failed: \(inferenceError?.localizedDescription ?? "unknown error")")
@@ -319,10 +319,10 @@ final class ClassificationTests: XCTestCase {
         if let basePredictions = basePredictions {
             XCTAssertGreaterThan(basePredictions.count, 0, "Should have at least one prediction")
             
-            // Verify these can be cast to VKClassificationPrediction objects
+            // Verify these can be cast to VKSDKClassificationPrediction objects
             for basePrediction in basePredictions {
-                guard let prediction = basePrediction as? VKClassificationPrediction else {
-                    XCTFail("Prediction should be of type VKClassificationPrediction")
+                guard let prediction = basePrediction as? VKSDKClassificationPrediction else {
+                    XCTFail("Prediction should be of type VKSDKClassificationPrediction")
                     continue
                 }
                 
@@ -333,7 +333,7 @@ final class ClassificationTests: XCTestCase {
             
             // Verify meaningful results  
             if let topBasePrediction = basePredictions.first,
-               let topPrediction = topBasePrediction as? VKClassificationPrediction {
+               let topPrediction = topBasePrediction as? VKSDKClassificationPrediction {
                 XCTAssertGreaterThan(topPrediction.confidence, 0.1, "Top prediction should have reasonable confidence")
             }
         }
@@ -363,20 +363,20 @@ final class ClassificationTests: XCTestCase {
         if let predictions = predictions {
             XCTAssertGreaterThan(predictions.count, 0, "Should have at least one prediction")
             
-            // Verify these can be cast to VKClassificationPrediction
+            // Verify these can be cast to VKSDKClassificationPrediction
             for prediction in predictions {
-                if let classificationPrediction = prediction as? VKClassificationPrediction {
+                if let classificationPrediction = prediction as? VKSDKClassificationPrediction {
                     XCTAssertFalse(classificationPrediction.className.isEmpty, "Class name should not be empty")
                     XCTAssertGreaterThanOrEqual(classificationPrediction.confidence, 0.0, "Confidence should be >= 0")
                     XCTAssertLessThanOrEqual(classificationPrediction.confidence, 1.0, "Confidence should be <= 1")
                 } else {
-                    XCTFail("Prediction should be castable to VKClassificationPrediction")
+                    XCTFail("Prediction should be castable to VKSDKClassificationPrediction")
                 }
             }
             
             // Verify meaningful results
             if let firstPrediction = predictions.first,
-               let classificationPrediction = firstPrediction as? VKClassificationPrediction {
+               let classificationPrediction = firstPrediction as? VKSDKClassificationPrediction {
                 XCTAssertGreaterThan(classificationPrediction.confidence, 0.1, "Top prediction should have reasonable confidence")
             }
         }
@@ -407,10 +407,10 @@ final class ClassificationTests: XCTestCase {
         if let basePredictions = basePredictions {
             XCTAssertGreaterThan(basePredictions.count, 0, "Should have at least one prediction")
             
-            // Test VKClassificationPrediction properties by casting
+            // Test VKSDKClassificationPrediction properties by casting
             for basePrediction in basePredictions {
-                guard let prediction = basePrediction as? VKClassificationPrediction else {
-                    XCTFail("Prediction should be of type VKClassificationPrediction")
+                guard let prediction = basePrediction as? VKSDKClassificationPrediction else {
+                    XCTFail("Prediction should be of type VKSDKClassificationPrediction")
                     continue
                 }
                 
@@ -422,7 +422,7 @@ final class ClassificationTests: XCTestCase {
             
             // Verify meaningful results
             if let topBasePrediction = basePredictions.first,
-               let topPrediction = topBasePrediction as? VKClassificationPrediction {
+               let topPrediction = topBasePrediction as? VKSDKClassificationPrediction {
                 XCTAssertGreaterThan(topPrediction.confidence, 0.1, "Top prediction should have reasonable confidence")
             }
         }
@@ -466,10 +466,10 @@ final class ClassificationTests: XCTestCase {
             XCTAssertGreaterThan(basePredictions.count, 0, "Should have at least one prediction")
             XCTAssertEqual(basePredictions.count, 6, "Should have exactly 6 predictions")
             
-            // Cast to VKClassificationPrediction to test specific properties
+            // Cast to VKSDKClassificationPrediction to test specific properties
             for basePrediction in basePredictions {
-                guard let prediction = basePrediction as? VKClassificationPrediction else {
-                    XCTFail("Prediction should be of type VKClassificationPrediction")
+                guard let prediction = basePrediction as? VKSDKClassificationPrediction else {
+                    XCTFail("Prediction should be of type VKSDKClassificationPrediction")
                     continue
                 }
                 
@@ -488,7 +488,7 @@ final class ClassificationTests: XCTestCase {
             // Verify we got meaningful results
             XCTAssertGreaterThan(basePredictions.count, 0, "Should have predictions")
             if let topBasePrediction = basePredictions.first,
-               let topPrediction = topBasePrediction as? VKClassificationPrediction {
+               let topPrediction = topBasePrediction as? VKSDKClassificationPrediction {
                 XCTAssertGreaterThan(topPrediction.confidence, 0.1, "Top prediction should have reasonable confidence")
             }
         }

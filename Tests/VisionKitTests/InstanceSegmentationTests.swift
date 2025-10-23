@@ -75,10 +75,10 @@ final class InstanceSegmentationTests: XCTestCase {
         if let predictions = predictions {
             XCTAssertGreaterThan(predictions.count, 0, "Should have at least one prediction")
             
-            // Cast to VKInstanceSegmentationPrediction to test specific properties
+            // Cast to VKSDKInstanceSegmentationPrediction to test specific properties
             for prediction in predictions {
-                guard let segPrediction = prediction as? VKInstanceSegmentationPrediction else {
-                    XCTFail("Prediction should be of type VKInstanceSegmentationPrediction")
+                guard let segPrediction = prediction as? VKSDKInstanceSegmentationPrediction else {
+                    XCTFail("Prediction should be of type VKSDKInstanceSegmentationPrediction")
                     continue
                 }
                 
@@ -125,10 +125,10 @@ final class InstanceSegmentationTests: XCTestCase {
         if let predictions = predictions {
             XCTAssertGreaterThan(predictions.count, 0, "Should have at least one prediction")
             
-            // Test VKInstanceSegmentationPrediction properties by casting
+            // Test VKSDKInstanceSegmentationPrediction properties by casting
             for prediction in predictions {
-                guard let segPrediction = prediction as? VKInstanceSegmentationPrediction else {
-                    XCTFail("Prediction should be of type VKInstanceSegmentationPrediction")
+                guard let segPrediction = prediction as? VKSDKInstanceSegmentationPrediction else {
+                    XCTFail("Prediction should be of type VKSDKInstanceSegmentationPrediction")
                     continue
                 }
                 
@@ -140,7 +140,7 @@ final class InstanceSegmentationTests: XCTestCase {
             
             // Verify meaningful results
             if let firstPrediction = predictions.first,
-               let segPrediction = firstPrediction as? VKInstanceSegmentationPrediction {
+               let segPrediction = firstPrediction as? VKSDKInstanceSegmentationPrediction {
                 XCTAssertGreaterThan(segPrediction.confidence, 0.1, "Top prediction should have reasonable confidence")
             }
         }

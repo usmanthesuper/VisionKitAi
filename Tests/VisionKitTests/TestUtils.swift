@@ -84,7 +84,7 @@ public class TestUtils {
     }
     
     // Helper function to load remote banana classification model
-    public static func loadBananasModel(modelVersion: Int = 6) async -> VKModel? {
+    public static func loadBananasModel(modelVersion: Int = 6) async -> VKSDKModel? {
         let vk = VisionKitMobile(apiKey: BANANA_API_KEY, apiURL: "https://api.roboflow.com")
         let (model, error, _, _) = await vk.load(model: "banana-ripeness-frqdw", modelVersion: modelVersion)
         
@@ -94,14 +94,14 @@ public class TestUtils {
         }
         
         XCTAssertNotNil(model, "Model should not be nil")
-        guard let _ = model as? VKClassificationModel else {
+        guard let _ = model as? VKSDKClassificationModel else {
             XCTFail("Model should be a classification model")
             return nil
         }
         return model
     }
 
-    public static func loadCarsModel(modelVersion: Int = 1) async -> VKModel? {
+    public static func loadCarsModel(modelVersion: Int = 1) async -> VKSDKModel? {
         let rf = VisionKitMobile(apiKey: API_KEY)
         let (model, error, _, _) = await vk.load(model: "multiclass-gyn4p-l5m6c", modelVersion: modelVersion)
         
@@ -111,7 +111,7 @@ public class TestUtils {
         }
         
         XCTAssertNotNil(model, "Model should not be nil")
-        guard let _ = model as? VKClassificationModel else {
+        guard let _ = model as? VKSDKClassificationModel else {
             XCTFail("Model should be a classification model")
             return nil
         }
@@ -119,7 +119,7 @@ public class TestUtils {
     }
     
     // Helper function to load object detection model
-    public static func loadObjectDetectionModel() async -> VKModel? {
+    public static func loadObjectDetectionModel() async -> VKSDKModel? {
         let rf = VisionKitMobile(apiKey: API_KEY)
         let (model, error, _, _) = await vk.load(model: "hard-hat-sample-txcpu", modelVersion: 6)
         
@@ -133,7 +133,7 @@ public class TestUtils {
     }
     
     // Helper function to load instance segmentation model
-    public static func loadInstanceSegmentationModel() async -> VKModel? {
+    public static func loadInstanceSegmentationModel() async -> VKSDKModel? {
         let rf = VisionKitMobile(apiKey: API_KEY)
         let (model, error, _, _) = await vk.load(model: "hat-1wxze-g6xvw", modelVersion: 1)
         
@@ -147,7 +147,7 @@ public class TestUtils {
     }
     
     // Helper function to load RFDetr model from API
-    public static func loadDETRModel() async -> VKModel? {
+    public static func loadDETRModel() async -> VKSDKModel? {
         let vk = VisionKitMobile(apiKey: API_KEY)
         let (model, error, _, _) = await vk.load(model: "hard-hat-sample-txcpu", modelVersion: 7)
         

@@ -86,7 +86,7 @@ The included example app shows a complete implemention illustrating this process
 
 ## Inference Results ###
 
-You'll have noticed that when an inference is complete, the SDK returns an array of `VKObjectDetectionPrediction` or `VKInstanceSegmentationPrediction` results. These are structs that contain data on what object was detected in the image, as well as information on the bounding box that encapsulates that object: 
+You'll have noticed that when an inference is complete, the SDK returns an array of `VKSDKObjectDetectionPrediction` or `VKSDKInstanceSegmentationPrediction` results. These are structs that contain data on what object was detected in the image, as well as information on the bounding box that encapsulates that object: 
 
 ```
 x: Float
@@ -100,7 +100,7 @@ box: CGRect
 points: [CGPoint] // only on instance segmentation models
 ```
 
-Call `getValues` on the returned `VKObjectDetectionPrediction` or `VKInstanceSegmentationPrediction` to get these results. 
+Call `getValues` on the returned `VKSDKObjectDetectionPrediction` or `VKSDKInstanceSegmentationPrediction` to get these results. 
 
 
 

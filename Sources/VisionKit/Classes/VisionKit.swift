@@ -40,22 +40,22 @@ public class VisionKitMobile: NSObject {
         #endif
     }
     
-    func getModelClass(modelType: String) -> VKModel {
+    func getModelClass(modelType: String) -> VKSDKModel {
         if (modelType.contains("seg")) {
-            return VKInstanceSegmentationModel()
+            return VKSDKInstanceSegmentationModel()
         }
         if (modelType.contains("vit") || modelType.contains("resnet")) {
-            return VKClassificationModel()
+            return VKSDKClassificationModel()
         }
         if (modelType.contains("detr") || modelType.contains("rfdetr")) {
-            return VKDetrObjectDetectionModel()
+            return VKSDKDetrObjectDetectionModel()
         }
-        return VKObjectDetectionModel()
+        return VKSDKObjectDetectionModel()
     }
     
     //Start the process of fetching the CoreMLModel
     @available(*, renamed: "load(model:modelVersion:)")
-    public func load(model: String, modelVersion: Int, completion: @escaping (VKModel?, Error?, String, String)->()) {
+    public func load(model: String, modelVersion: Int, completion: @escaping (VKSDKModel?, Error?, String, String)->()) {
         if let modelInfo = loadModelCache(modelName: model, modelVersion: modelVersion),
             let modelURL = modelInfo["compiledModelURL"] as? String,
             let colors = modelInfo["colors"] as? [String: String],
@@ -99,12 +99,12 @@ public class VisionKitMobile: NSObject {
         }
     }
 
-    private func clearAndRetryLoadingModel(_ model: String, _ modelVersion: Int, _ completion: @escaping (VKModel?, Error?, String, String)->()) {
+    private func clearAndRetryLoadingModel(_ model: String, _ modelVersion: Int, _ completion: @escaping (VKSDKModel?, Error?, String, String)->()) {
         clearModelCache(modelName: model, modelVersion: modelVersion)
         self.load(model: model, modelVersion: modelVersion, completion: completion)
     }
 
-    public func load(model: String, modelVersion: Int) async -> (VKModel?, Error?, String, String) {
+    public func load(model: String, modelVersion: Int) async -> (VKSDKModel?, Error?, String, String) {
         if #available(macOS 10.15, *) {
             return await withCheckedContinuation { continuation in
                 load(model: model, modelVersion: modelVersion) { result1, result2, result3, result4 in
